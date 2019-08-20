@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GalleryTableSeeder extends Seeder
+class GroupTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class GalleryTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('galleries')->insert([
+        DB::table('groups')->insert([
             'name' => Str::random(10),
             'description' => Str::random(100),
         ]);
