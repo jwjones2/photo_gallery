@@ -6,15 +6,23 @@ import Lightbox from 'react-images';
 export default class Gallery extends Component {
     constructor(props){
         super(props);
+
+        // get the current selected gallery
+        let selectedGallery = localStorage.getItem('galleryId');
         this.state = {
             images : [],
             currentImage: 0,
-            lightboxIsOpen: false
+            lightboxIsOpen: false,
+            galleryId: selectedGallery
         };
     }
 
     componentDidMount(){
-        get('/photos')
+        get('/photos', {
+                params: {
+                    id: this.state.galleryId
+                }
+            })
             .then(response => {
                 const images = response.data;
                 this.setState({
@@ -57,6 +65,8 @@ export default class Gallery extends Component {
         });
         return (
             <div className="gallery">
+                <h1>Gallery: {this.state.galleryId }</h1>
+
                 {this.state.images.length ?
                     <ReactGallery
                         photos={photos}

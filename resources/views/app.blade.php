@@ -8,6 +8,18 @@
     <title>Laravel React Gallery</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+
+    <script>
+        function getRandomColor() {
+            // from: https://stackoverflow.com/questions/1484506/random-color-generator
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
 </head>
 <body>
 

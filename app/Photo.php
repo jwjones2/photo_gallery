@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Photos extends Model
+class Photo extends Model
 {
     protected $table = 'photos';
 
     protected $fillable = ['uri', 'public', 'height', 'width'];
+
+    public function gallery () {
+        return $this->belongsTo('App\Gallery');
+    }
 }

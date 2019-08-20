@@ -13,5 +13,11 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/logout', 'Auth\LoginController@logout');
 
+    Route::get('/galleries', 'GalleryMainController@getGalleries');
+
     Route::get('{all?}', 'GalleryController@index')->where('all', '([A-z\d-\/_.]+)?');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

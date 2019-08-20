@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Photos;
+use App\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -13,9 +14,11 @@ class GalleryController extends Controller
         return view('app');
     }
 
-    public function getPhotos()
+    public function getPhotos(Request $request)
     {
-        return response()->json(Auth::user()->photos->toArray());
+        // takes an gallery id and returns the photos for that gallery 
+        $gallery = Gallery::find(1);
+        return response()->json($gallery->photos()->toArray());
     }
 
     public function uploadPhotos(Request $request)

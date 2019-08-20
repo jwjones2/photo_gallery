@@ -17,6 +17,18 @@ export default class Navbar extends Component {
                             to={'/'}
                             className={`nav-link ${this.props.location.pathname === '/' ? 'active' : ''}`}
                         >
+                            MANAGE GALLERIES
+                        </Link>
+                    </li>
+
+                    { this.props.location.pathname != '/' ? 
+                    <React.Fragment>
+                    
+                    <li className="nav-item">
+                        <Link
+                            to={'/gallery'}
+                            className={`nav-link ${this.props.location.pathname === '/gallery' ? 'active' : ''}`}
+                        >
                             GALLERY
                         </Link>
                     </li>
@@ -37,6 +49,9 @@ export default class Navbar extends Component {
                             MANAGE
                         </Link>
                     </li>
+                    </React.Fragment>
+                    : null }
+                
                     <li className="nav-item">
                         <a className="nav-link" href="/logout">LOGOUT</a>
                     </li>
