@@ -7,13 +7,15 @@ export default class Gallery extends Component {
     constructor(props){
         super(props);
 
-        // get the current selected gallery
+        // get the current selected gallery and name
         let selectedGallery = localStorage.getItem('galleryId');
+        let selectedGalleryName = localStorage.getItem('galleryName');
         this.state = {
             images : [],
             currentImage: 0,
             lightboxIsOpen: false,
-            galleryId: selectedGallery
+            galleryId: selectedGallery,
+            galleryName: selectedGalleryName
         };
     }
 
@@ -65,7 +67,7 @@ export default class Gallery extends Component {
         });
         return (
             <div className="gallery">
-                <h1>Gallery: {this.state.galleryId }</h1>
+                <h1>Gallery: {this.state.galleryName }</h1>
 
                 {this.state.images.length ?
                     <ReactGallery

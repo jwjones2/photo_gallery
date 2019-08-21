@@ -6,7 +6,7 @@ export default class GalleryManager extends Component {
     constructor(props){
         super(props);
         this.state = {
-            galleries : [],
+            events : [],
         };
 
         this.openGallery = this.openGallery.bind(this)
@@ -15,15 +15,16 @@ export default class GalleryManager extends Component {
     componentDidMount(){
         get('/galleries')
             .then(response => {
-                const galleries = response.data;
+                const events = response.data;
                 this.setState({
-                    galleries : galleries
+                    events : events
                 })
             })
     }
 
-    openGallery ( e, id ) {
+    openGallery ( e, id, name ) {
         localStorage.setItem('galleryId', id);
+        localStorage.setItem('galleryName', name);
         this.props.history.push('/gallery');
     }
 
@@ -38,7 +39,7 @@ export default class GalleryManager extends Component {
         
         let that = this; // to be able to access class level this in return
 
-        let galleryList = this.state.galleries.map(function (gallery) {
+        let galleryList = this.state.events.map(function (gallery) {
             // determine if image is set yet
             // ...
             return (
@@ -59,7 +60,7 @@ export default class GalleryManager extends Component {
                             <button 
                                 className="btn btn-primary"
                                 id={gallery.id}
-                                onClick={((e) => that.openGallery(e, gallery.id))} >
+                                onClick={((e) => that.openGallery(e, gallery.id, gallery.name))} >
                                 Open Gallery
                             </button>
                         </div>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Gallery;
-use App\Photos;
+use App\Event;
+use App\Image;
 use Illuminate\Http\Request;
 
 class GalleryMainController extends Controller
@@ -20,11 +20,11 @@ class GalleryMainController extends Controller
 
     public function getGalleries()
     {
-        //  display any galleries and add/edit/remove...
-        $gallery_data = Gallery::all()->toArray();
+        //  display any events and add/edit/remove...
+        $event_data = Event::all()->toArray();
         // get the first photo in gallery if present and show
         //...
-        return response()->json($gallery_data);
+        return response()->json($event_data);
     }
 
     /**

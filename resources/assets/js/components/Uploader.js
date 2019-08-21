@@ -7,6 +7,9 @@ export default class Uploader extends Component {
 
     constructor(props){
         super(props);
+
+        // set selected gallery id
+        let selectedGallery = localStorage.getItem('galleryId');
         this.state = {
             images : [],
             progress : 0,
@@ -14,7 +17,8 @@ export default class Uploader extends Component {
             supported_mime : [
                 'image/jpeg',
                 'image/png',
-            ]
+            ],
+            galleryId: selectedGallery
         }
     }
 
@@ -47,18 +51,18 @@ export default class Uploader extends Component {
 
         this.setState({
             uploading : true
-        });
+        }); 
 
         images.map((image) => {
             let formData = new FormData();
             formData.append("file", image);
-
+            formData.append("gallery_id", this.state.galleryId);
              post("/photos", formData, config).then(response => {
                 const done = response.data;
                 if(done){
                     this.removeDroppedFile(image.preview);
                     this.calculateProgress(total_files, ++uploaded);
-                }
+                } 
             });
         });
     }
