@@ -28,6 +28,10 @@ export default class GalleryManager extends Component {
         this.props.history.push('/gallery');
     }
 
+    editGallery ( e, id ) {
+        this.props.history.push('/gallerycrud/' + id);
+    }
+
     createGallery(){
         alert('here');
     }
@@ -62,6 +66,13 @@ export default class GalleryManager extends Component {
                                 id={gallery.id}
                                 onClick={((e) => that.openGallery(e, gallery.id, gallery.name))} >
                                 Open Gallery
+                            </button>
+
+                            <button 
+                                className="btn btn-warning"
+                                id={gallery.id}
+                                onClick={((e) => that.editGallery(e, gallery.id))} >
+                                Edit Gallery
                             </button>
                         </div>
                 </div>

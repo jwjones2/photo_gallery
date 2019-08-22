@@ -1,4 +1,4 @@
-import {Route} from 'react-router-dom';
+import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 import React, {Component, Fragment} from 'react';
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
@@ -17,11 +17,13 @@ export default class Root extends Component {
                 )}/>
 
                 <div className="container">
-                    <Route exact path="/" component={GalleryManager}/>
-                    <Route exact path="/gallery" component={Gallery}/>
-                    <Route exact path="/manage" component={ManageGallery}/>
-                    <Route exact path="/upload" component={Uploader}/>
-                    <Route exact path="/gallerycrud" component={GalleryCrud}/>
+                    <Switch>
+                        <Route exact path="/" component={GalleryManager}/>
+                        <Route exact path="/gallery" component={Gallery}/>
+                        <Route exact path="/manage" component={ManageGallery}/>
+                        <Route exact path="/upload" component={Uploader}/>
+                        <Route exact path="/gallerycrud/:id" component={GalleryCrud}/>
+                    </Switch>
                 </div>
             </Fragment>
         );

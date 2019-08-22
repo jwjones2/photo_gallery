@@ -32,9 +32,9 @@ class GalleryMainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        // 
+        
     }
 
     /**
@@ -45,10 +45,13 @@ class GalleryMainController extends Controller
      */
     public function store(Request $request)
     {
-        // add a new gallery
-        $name = $request->input('name');
+        $event = new Event;
+        $event->name = $request->input('name');
+        $event->description = $request->input('description');
+        $event->save();
+
         return response()->json([
-            'uploaded' => true
+            'id' => $event->id
         ]);
     }
 
@@ -58,9 +61,10 @@ class GalleryMainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $event = Event::find($request->input('id'));
+        return response()->json($event);
     }
 
     /**

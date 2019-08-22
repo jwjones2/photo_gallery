@@ -15,6 +15,12 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/galleries', 'GalleryMainController@getGalleries');
 
+    Route::get('/event', 'GalleryMainController@show');
+
+    Route::post('/event', 'GalleryMainController@update');
+
+    Route::post('/new_event', 'GalleryMainController@store');
+
     Route::get('{all?}', 'GalleryController@index')->where('all', '([A-z\d-\/_.]+)?');
 });
 
